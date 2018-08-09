@@ -29,6 +29,7 @@ class Events extends \yii\db\ActiveRecord
     {
         return [
             [['caption'], 'string', 'max' => 255],
+	        [['caption'], 'required']
         ];
     }
 

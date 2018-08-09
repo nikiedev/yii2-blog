@@ -32,8 +32,11 @@ class Bids extends \yii\db\ActiveRecord
     {
         return [
             [['id_event'], 'integer'],
-            [['price'], 'number'],
-            [['name', 'email'], 'string', 'max' => 255],
+	        [['email'], 'email'],
+            [['price'], 'match', 'pattern' => '/(\d*\.\d{2}\b)/'],
+	        [['price'], 'default', 'value' => 0],
+	        [['id_event', 'name', 'email'], 'required'],
+            [['id_event', 'name', 'email'], 'string', 'max' => 255],
             [['id_event'], 'exist', 'skipOnError' => true, 'targetClass' => Events::className(), 'targetAttribute' => ['id_event' => 'id']],
         ];
     }
