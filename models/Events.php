@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "events".
@@ -51,4 +52,27 @@ class Events extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Bids::className(), ['id_event' => 'id']);
     }
+
+    public function getAllEvents()
+    {
+    	return $this->find()->asArray()->all();
+    }
+
+	/**
+	 * @param int $more_than
+	 *
+	 * @return array
+	 * @throws \yii\db\Exception
+	 */
+	public function getEventMoreThanNum($more_than = 3)
+	{
+		$query = (new Query())
+			->select(['events.caption', 'COUNT(bids.id_event) AS ev_bids_count'])
+			->from('bids')
+			->leftJoin( 'events', 'bids.id_event = events.id')
+			->groupBy('events.caption')
+			->having(['>', 'ev_bids_count', $more_than]);
+		$command = $query->createCommand();
+		return $command->queryAll();
+	}
 }

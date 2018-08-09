@@ -62,4 +62,23 @@ class Bids extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Events::className(), ['id' => 'id_event']);
     }
+
+    public function getAllBids()
+    {
+    	return $this->find()->asArray()->all();
+    }
+
+    public function getBidMaxPriceUserName()
+    {
+	    $max_price = $this->find()->max('price');
+	    return $this->findOne(['price' => $max_price])->name;
+    }
+
+    public function getUserNameMaxBidPrice()
+    {
+		return  $user_name = $this->find()->select('name');
+	    return $this->findOne(['name' => $max_price])->name;
+    }
+
+
 }

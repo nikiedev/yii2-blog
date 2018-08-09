@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Bids;
+use app\models\Events;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -54,14 +56,29 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+	/**
+	 * Displays homepage.
+	 *
+	 * @return string
+	 * @throws \yii\db\Exception
+	 */
     public function actionIndex()
     {
-        return $this->render('index');
+    	$bidsModel = new Bids();
+    	$eventsModel = new Events();
+		$bids = $bidsModel->getAllBids();
+		$events = $eventsModel->getAllEvents();
+
+		$bidMaxPriceUserName = $bidsModel->getBidMaxPriceUserName();
+	    $eventMoreThanNum = $eventsModel->getEventMoreThanNum();
+
+		//var_dump($eventMoreThanNum);die;
+        return $this->render('index',[
+        	'bids' => $bids,
+	        'events' => $events,
+	        'bidMaxPriceUserName' => $bidMaxPriceUserName,
+	        'eventMoreThanNum' => $eventMoreThanNum
+        ]);
     }
 
     /**

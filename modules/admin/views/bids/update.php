@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Bids */
 
 $this->title = 'Update Bids: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Bids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Заявки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Изменение';
 ?>
 <div class="bids-update">
 

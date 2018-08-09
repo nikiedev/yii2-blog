@@ -35,21 +35,10 @@ AppAsset::register($this);
 	echo Nav::widget([
 		'options' => ['class' => 'navbar-nav navbar-right'],
 		'items' => [
-			['label' => 'Админ Панель', 'url' => ['/admin/default/index']],
+			['label' => 'Главная', 'url' => ['/site/index']],
+			['label' => 'Редактирование', 'url' => ['/admin/default/index']],
 			['label' => 'События', 'url' => ['/admin/events/index']],
-			['label' => 'Заявки', 'url' => ['/admin/bids/index']],
-			Yii::$app->user->isGuest ? (
-			['label' => 'Login', 'url' => ['/site/login']]
-			) : (
-				'<li>'
-				. Html::beginForm(['/site/logout'], 'post')
-				. Html::submitButton(
-					'Logout (' . Yii::$app->user->identity->username . ')',
-					['class' => 'btn btn-link logout']
-				)
-				. Html::endForm()
-				. '</li>'
-			)
+			['label' => 'Заявки', 'url' => ['/admin/bids/index']]
 		],
 	]);
 	NavBar::end();
