@@ -11,6 +11,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+	'name' => 'Блог: События и Заявки',
     'components' => [
         'request' => [
 	        'baseUrl'=> '',
