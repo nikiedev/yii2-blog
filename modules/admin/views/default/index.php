@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Url;
-
+$this->title = 'Блог: События и Заявки. Редактирование';
 ?>
 <div class="admin-default-index">
     <h1 class="text-info text-center panel">События и Заявки: Редактирование</h1>
